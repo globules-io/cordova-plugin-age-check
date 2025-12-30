@@ -1,0 +1,37 @@
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="cordova-plugin-age-check"
+        version="0.1.0">
+     <name>cordova-plugin-age-check</name>
+     <description>Cordova plugin for age verification using Google Play Age Signals (Android) and placeholder for Apple Declared Age Range (iOS)</description>
+     <license>MIT</license>
+     <keywords>cordova,age,check,signals,google,play,apple</keywords>
+     <author email="info@globules.io">globules.io</author>
+     <repository url="https://github.com/globules-io/cordova-plugin-age-check.git" />
+     <engines>
+          <engine name="cordova" version=">=10.0.0" />
+     </engines>
+
+     <platform name="android">
+          <framework src="com.google.android.play:age-signals:0.0.2" type="gradleReference" />
+          <source-file src="src/android/AgeCheckPlugin.java" target-dir="io/globules/agecheck" />
+          <config-file target="AndroidManifest.xml" parent="/*">
+               <feature name="AgeCheckPlugin">
+                    <param name="android-package" value="io.globules.agecheck.AgeCheckPlugin" />
+               </feature>
+          </config-file>
+     </platform>
+
+     <platform name="ios">
+          <source-file src="src/ios/AgeCheckPlugin.swift" />
+          <config-file target="config.xml" parent="/*">
+               <feature name="AgeCheckPlugin">
+                    <param name="ios-package" value="AgeCheckPlugin" />
+               </feature>
+          </config-file>
+          <entitlement key="com.apple.developer.declared-age-range" value="YES" />
+     </platform>
+
+     <js-module src="www/AgeCheckPlugin.js" name="AgeCheckPlugin">
+          <clobbers target="AgeCheckPlugin" />
+     </js-module>
+</plugin>

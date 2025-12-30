@@ -1,0 +1,32 @@
+{
+     "name": "@globules-io/cordova-plugin-age-check",
+     "version": "0.0.1",
+     "description": "Cordova plugin for age verification using Google Play Age Signals (Android) and Apple Declared Age Range (iOS)",
+     "author": {
+          "name": "Globules.io"
+     },
+     "license": "MIT",
+     "repository": {
+          "type": "git",
+          "url": "https://github.com/globules-io/cordova-plugin-age-check"
+     },
+     "cordova": {
+          "id": "cordova-plugin-age-check",
+          "platforms": [
+               "android",
+               "ios"
+          ]
+     },
+     "keywords": [
+          "ecosystem:cordova",
+          "cordova-android",
+          "cordova-ios",
+          "age",
+          "age-verification",
+          "age-check",
+          "age-signals",
+          "play-age-signals",
+          "declared-age-range",
+          "declaredagerange"
+     ]
+}
