@@ -1,4 +1,4 @@
-package io.globules.agesignals;
+package io.globules.agecheck;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -6,29 +6,30 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Date;
-
 import android.content.Context;
 
 import com.google.android.play.agesignals.AgeSignalsManager;
 import com.google.android.play.agesignals.AgeSignalsManagerFactory;
 import com.google.android.play.agesignals.AgeSignalsRequest;
-import com.google.android.play.agesignals.AgeSignalsResult;
 import com.google.android.play.agesignals.AgeSignalsException;
-import com.google.android.play.agesignals.AgeSignalsVerificationStatus;
 
-public class AgeSignalsPlugin extends CordovaPlugin {
+public class AgeCheckPlugin extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if ("checkAgeSignals".equals(action)) {
-            checkAgeSignals(callbackContext);
+        if ("checkAge".equals(action)) {
+            checkAge(callbackContext);
+            return true;
+        }
+        if ("isSupported".equals(action)) {
+            // Google Play Age Signals is supported on all devices with Google Play Services
+            callbackContext.success(1); // true
             return true;
         }
         return false;
     }
 
-    private void checkAgeSignals(CallbackContext callbackContext) {
+    private void checkAge(CallbackContext callbackContext) {
         Context context = cordova.getActivity().getApplicationContext();
         AgeSignalsManager manager = AgeSignalsManagerFactory.create(context);
 

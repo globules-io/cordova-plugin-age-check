@@ -1,6 +1,6 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         id="cordova-plugin-age-check"
-        version="0.1.0">
+        version="0.0.2">
      <name>cordova-plugin-age-check</name>
      <description>Cordova plugin for age verification using Google Play Age Signals (Android) and placeholder for Apple Declared Age Range (iOS)</description>
      <license>MIT</license>
