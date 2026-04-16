@@ -1,11 +1,15 @@
 # cordova-plugin-age-check
 
-A Cordova plugin for privacy-safe age verification on both Android and iOS.
+Unified cross-platform age verification plugin for Cordova.
+This plugin acts as a **thin wrapper** that provides a consistent API for age verification on both Android and iOS.
 
-- **Android**: Uses Google Play Age Signals API  
-- **iOS**: Uses Apple Declared Age Range API (available on iOS 26 and later)
+## Features
 
-The plugin provides a unified JavaScript API that works today on Android and will automatically start working on iOS 26+ without any code changes.
+- Single unified API: `AgeCheck.checkAge()`
+- On **Android**: Uses [Google Play Age Signals API](https://github.com/globules-io/cordova-plugin-google-play-age)
+- On **iOS**: Uses [Apple Declared Age Range API](https://github.com/globules-io/cordova-plugin-apple-age-check)
+- Normalized `userStatus` values across platforms
+- Simple and lightweight
 
 ## Installation
 
@@ -16,40 +20,33 @@ cordova plugin rm @globules-io/cordova-plugin-age-check
 ## Supported Platforms
 
 Android (35+)
-iOS (graceful fallback on iOS < 26, full support on iOS 26+)
+iOS (26+)
 
 ## JS API
 ```bash
-AgeCheckPlugin.isSupported(function(supported) {
-    if (supported) {
-        console.log("Native age verification is available");
-    } else {
-        console.log("Native age verification not supported – use fallback");
+AgeCheck.checkAge(
+    function(result) {
+        console.log("Age Check Result:", result);
+        
+        switch (result.userStatus) {
+            case "VERIFIED":
+            case "DECLARED":
+                // Full access
+                break;
+            case "DECLINED":
+            case "SUPERVISED_APPROVAL_DENIED":
+                // Restricted mode
+                break;
+            default:
+                // Unknown or fallback
+        }
+    },
+    function(error) {
+        console.error("Age check failed:", error);
     }
-}, function(error) {
-    console.error("Error checking support:", error);
-});
+);
 
-AgeCheckPlugin.checkAge(function(result) {
-    console.log("Age verification result:", result);
-    // Example result on Android:
-    // {
-    //   userStatus: "VERIFIED_AGE_RANGE",
-    //   ageLower: 18,
-    //   ageUpper: null,
-    //   mostRecentApprovalDate: 1735603200000,
-    //   installId: "abc123..."
-    // }
-    //
-    // Example result on iOS 26+ (18+ gate):
-    // {
-    //   userStatus: "sharing",
-    //   ageLower: 18,
-    //   ageUpper: null,
-    //   mostRecentApprovalDate: null,
-    //   installId: null
-    // }
-}, function(error) {
-    console.error("Age verification failed or declined:", error);
+AgeCheck.isSupported(function(supported) {
+    console.log("AgeCheck supported:", supported);
 });
 ```
