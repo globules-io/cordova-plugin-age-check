@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         id="@globules-io/cordova-plugin-age-check"
-        version="1.0.0">
+        version="2.0.0">
     <name>AgeCheck</name>
-    <description>Unified age verification plugin. Routes to Google Play Age Signals on Android and Apple Declared Age Range on iOS.</description>
+    <description>Unified age check. Asks Google Play Age Signals on Android and Apple Declared Age Range on iOS whether the user meets a required age.</description>
     <license>MIT</license>
     <keywords>cordova,age,verification,google,apple</keywords>
     <author email="info@globules.io">globules.io</author>
@@ -11,8 +11,8 @@
     <engines>
         <engine name="cordova" version=">=10.0.0" />
     </engines>
-    <dependency id="@globules-io/cordova-plugin-google-play-age" version="*" />
-    <dependency id="@globules-io/cordova-plugin-apple-age-check" version="*" />
+    <dependency id="@globules-io/cordova-plugin-google-play-age" version=">=0.3.0" />
+    <dependency id="@globules-io/cordova-plugin-apple-age-check" version=">=0.2.0" />
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="AgeCheck">

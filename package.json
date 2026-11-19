@@ -1,6 +1,6 @@
 {
      "name": "@globules-io/cordova-plugin-age-check",
-     "version": "1.0.0",
+     "version": "2.0.0",
      "description": "Unified cross-platform age verification plugin for Cordova. Uses Google Play Age Signals on Android and Apple's Declared Age Range on iOS.",
      "author": {
           "name": "Globules.io"
@@ -28,8 +28,8 @@
           "declaredagerange"
      ],
      "dependencies": {
-          "@globules-io/cordova-plugin-google-play-age": "*",
-          "@globules-io/cordova-plugin-apple-age-check": "*"
+          "@globules-io/cordova-plugin-google-play-age": ">=0.3.0",
+          "@globules-io/cordova-plugin-apple-age-check": ">=0.2.0"
      },
      "cordova": {
           "id": "@globules-io/cordova-plugin-age-check",
